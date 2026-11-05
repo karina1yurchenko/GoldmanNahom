@@ -11,6 +11,7 @@ const countEl = document.querySelector("#sign-count");
 const loadError = document.querySelector("#load-error");
 const setupBanner = document.querySelector("#setup-banner");
 const coverageEl = document.querySelector("#coverage-rows");
+const doneBanner = document.querySelector("#done-banner");
 
 let strokes = [];
 let currentItems = [];
@@ -295,6 +296,8 @@ function renderCoverage(items) {
 }
 
 async function refresh() {
+  // Only the admin page lists signatures; the tenant page just signs.
+  if (!rowsEl) return;
   loadError.hidden = true;
   try {
     const { items } = await loadRecord();
@@ -676,6 +679,10 @@ form.addEventListener("submit", async (event) => {
   try {
     await saveRecord(record);
     closeDialog();
+    if (doneBanner) {
+      doneBanner.hidden = false;
+      doneBanner.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
     await refresh();
   } catch (error) {
     showError(errorMessage(error));

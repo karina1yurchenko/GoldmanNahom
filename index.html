@@ -26,54 +26,32 @@
       <p id="setup-banner" class="banner" hidden>
         שמירת חתימות עדיין לא הופעלה. צריך להוסיף את הסוד SIGN_TOKEN ולהריץ את פעולת Deploy site.
       </p>
+      <p id="done-banner" class="banner done" hidden>תודה, החתימה נשמרה.</p>
 
       <article class="paper">
-        <img src="page-1.png" alt="הודעה והחלטת בעלי הדירות – סיום התקשרות מול חברת האחזקה עובד" />
-        <p class="pdf-link">
-          <button type="button" class="download-button" data-download-pdf>הורדת PDF</button>
+        <div class="doc">
+          <h2 class="doc-title">הודעה והחלטת בעלי הדירות – סיום התקשרות מול חברת האחזקה "עובד" והחלפת חברת אחזקה</h2>
+          <p class="doc-place">מתחם נחום גולדמן 1–9, באר שבע</p>
+          <p><strong>נושא:</strong> סיום ההתקשרות מול חברת "עובד שירות ואיכות בע"מ" והחלפת חברת האחזקה במתחם</p>
+          <p>אנו, בעלי הדירות החתומים מטה במתחם נחום גולדמן 1–9, באר שבע, מצהירים ומאשרים בזאת כדלקמן:</p>
+          <ol>
+            <li>
+              <strong>סיום ההתקשרות מול חברת "עובד":</strong> אנו מאשרים לוועד הבית הנבחר להוציא הודעה
+              רשמית על סיום ההתקשרות מול חברת האחזקה הנוכחית, "עובד שירות ואיכות בע"מ", בהתאם לתנאי
+              ההסכם ולחוק.
+            </li>
+            <li>
+              <strong>הסמכת נציגת הוועד:</strong> אנו מסמיכים את נציגת הוועד, קארין יורצ'נקו, לחתום בשם
+              בעלי הדירות ובשם ועד בית על כל המסמכים הנדרשים לצורך סיום ההתקשרות מול חברת "עובד"
+              והחתימה מול החברה החדשה שתיבחר.
+            </li>
+          </ol>
+          <p class="doc-signed"><strong>על החתום:</strong><br />בעלי הדירות במתחם נחום גולדמן 1–9, באר שבע</p>
+        </div>
+        <p class="sign-cta">
+          <button type="button" class="sign-button" data-open-sign>לחתימה על המסמך</button>
         </p>
       </article>
-
-      <section class="collected" aria-labelledby="collected-title">
-        <div class="collected-head">
-          <h2 id="collected-title">חתימות שנאספו</h2>
-          <p id="sign-count" class="count">טוען…</p>
-          <button type="button" class="download-button" data-download-pdf>הורדת PDF</button>
-          <button type="button" class="sign-button" data-open-sign>לחתום</button>
-        </div>
-        <p id="load-error" class="form-error" hidden></p>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>מס'</th>
-                <th>מספר בניין</th>
-                <th>מספר דירה</th>
-                <th>שם מלא</th>
-                <th>תאריך</th>
-                <th>חתימה</th>
-              </tr>
-            </thead>
-            <tbody id="sign-rows"></tbody>
-          </table>
-        </div>
-      </section>
-
-      <section class="collected coverage" aria-labelledby="coverage-title">
-        <h2 id="coverage-title">דירות שחתמו</h2>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר בניין</th>
-                <th>דירות שחתמו</th>
-                <th>כמות</th>
-              </tr>
-            </thead>
-            <tbody id="coverage-rows"></tbody>
-          </table>
-        </div>
-      </section>
     </main>
 
     <dialog id="sign-dialog">

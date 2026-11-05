@@ -104,6 +104,57 @@ main {
   background: white;
 }
 
+.banner.done {
+  background: #e3f3ea;
+  color: var(--ok);
+  font-weight: 600;
+}
+
+.sign-cta {
+  margin: 12px 4px 4px;
+  text-align: center;
+}
+
+.sign-cta .sign-button {
+  background: var(--navy);
+  color: white;
+  padding: 12px 32px;
+}
+
+.doc {
+  padding: 28px 32px 8px;
+}
+
+.doc-title {
+  margin: 0 0 8px;
+  font-size: 24px;
+  line-height: 1.4;
+  color: var(--navy);
+}
+
+.doc-place {
+  margin: 0 0 22px;
+  font-weight: 700;
+}
+
+.doc p,
+.doc li {
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.doc ol {
+  padding: 0 22px 0 0;
+}
+
+.doc li {
+  margin-bottom: 12px;
+}
+
+.doc strong {
+  color: var(--navy);
+}
+
 .pdf-link {
   margin: 8px 4px 0;
   font-size: 14px;
@@ -318,6 +369,19 @@ select {
 
   .topbar h1 {
     font-size: 18px;
+  }
+
+  .doc {
+    padding: 16px 10px 4px;
+  }
+
+  .doc-title {
+    font-size: 20px;
+  }
+
+  .doc p,
+  .doc li {
+    font-size: 16px;
   }
 }
 

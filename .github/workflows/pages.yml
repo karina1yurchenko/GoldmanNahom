@@ -46,6 +46,7 @@ jobs:
           site.mkdir()
           for name in (
               "index.html",
+              "admin.html",
               "app.js",
               "styles.css",
               "page-1.png",
