@@ -682,7 +682,7 @@ form.addEventListener("submit", async (event) => {
     await refresh();
   } catch (error) {
     if (error.code === "duplicate") replaceRow.hidden = false;
-    showError(errorMessage(error));
+    else showError(errorMessage(error));
   } finally {
     submitButton.disabled = false;
     submitButton.textContent = "שמירת החתימה";
