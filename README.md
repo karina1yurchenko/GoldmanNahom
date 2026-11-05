@@ -4,6 +4,13 @@
 
 הדף מאוחסן ב-GitHub Pages. כל חתימה נשמרת בקובץ `signatures.json` בריפו הזה, בלי מסד נתונים. מבוסס על [vaad-sign](https://github.com/Timur-Krasner-RI/vaad-sign).
 
+## קישורים
+
+- לדיירים (חתימה בלבד): https://karina1yurchenko.github.io/GoldmanNahom/
+- לוועד (טבלת חתימות והורדת PDF): https://karina1yurchenko.github.io/GoldmanNahom/admin.html
+
+דף הוועד לא מוסתר: הוא רק לא מקושר מדף הדיירים. החתימות עצמן נמצאות בקובץ `signatures.json` בריפו הציבורי.
+
 ## הפעלה חד-פעמית
 
 אירוח חינמי ב-GitHub Pages עובד על ריפו ציבורי. השמות, מספרי הדירות והחתימות יהיו גלויים למי שיש לו את הקישור.
