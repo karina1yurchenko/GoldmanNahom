@@ -306,15 +306,6 @@ select {
   font-weight: 600;
 }
 
-.replace {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  color: var(--danger);
-  font-weight: 600;
-}
-
 .dialog-actions {
   justify-content: flex-end;
   margin-top: 8px;

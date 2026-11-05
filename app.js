@@ -5,7 +5,6 @@ const dialog = document.querySelector("#sign-dialog");
 const form = document.querySelector("#sign-form");
 const pad = document.querySelector("#pad");
 const formError = document.querySelector("#form-error");
-const replaceRow = document.querySelector("#replace-row");
 const submitButton = document.querySelector("#submit-sign");
 const rowsEl = document.querySelector("#sign-rows");
 const countEl = document.querySelector("#sign-count");
@@ -16,7 +15,6 @@ const coverageEl = document.querySelector("#coverage-rows");
 let strokes = [];
 let currentItems = [];
 let activeStroke = null;
-let replaceExisting = false;
 
 function todayISO() {
   const d = new Date();
@@ -88,20 +86,26 @@ async function loadRecord() {
   return { sha: data.sha, items };
 }
 
+function normalizeName(name) {
+  return String(name || "").trim().replace(/\s+/g, " ");
+}
+
 async function saveRecord(record) {
   let lastError = null;
   for (let attempt = 0; attempt < 5; attempt += 1) {
     const { sha, items } = await loadRecord();
-    const index = items.findIndex(
-      (item) => item.building === record.building && item.apartment === record.apartment,
+    const alreadySigned = items.some(
+      (item) =>
+        item.building === record.building &&
+        item.apartment === record.apartment &&
+        normalizeName(item.name) === normalizeName(record.name),
     );
-    if (index >= 0 && !replaceExisting) {
+    if (alreadySigned) {
       const error = new Error("duplicate");
       error.code = "duplicate";
       throw error;
     }
-    if (index >= 0) items[index] = record;
-    else items.push(record);
+    items.push(record);
 
     const body = {
       message: `חתימה: בניין ${record.building} דירה ${record.apartment}`,
@@ -210,7 +214,6 @@ function showError(message) {
 function clearError() {
   formError.hidden = true;
   formError.textContent = "";
-  replaceRow.hidden = true;
 }
 
 function buildingRank(building) {
@@ -312,7 +315,6 @@ async function refresh() {
 }
 
 function openDialog() {
-  replaceExisting = false;
   clearError();
   form.reset();
   form.elements.date.value = todayISO();
@@ -328,7 +330,7 @@ function closeDialog() {
 
 function errorMessage(error) {
   if (!config.token) return "שמירת החתימות עדיין לא הופעלה.";
-  if (error.code === "duplicate") return "לדירה הזו כבר נשמרה חתימה.";
+  if (error.code === "duplicate") return "חתימה בשם הזה כבר נשמרה לדירה הזו.";
   if (error.status === 401) return "מפתח הגישה לא תקין.";
   if (error.status === 403) {
     return `למפתח אין הרשאת כתיבה. פתחו את הטוקן, בחרו רק את ${config.repo}, ושנו את Contents ל-Read and write. אם מחרוזת הטוקן לא השתנתה, אין צורך לפרסם מחדש.`;
@@ -646,11 +648,6 @@ document.querySelectorAll("[data-download-pdf]").forEach((button) => {
 });
 document.querySelector("[data-close-sign]").addEventListener("click", closeDialog);
 
-document.querySelector("#replace-sign").addEventListener("click", () => {
-  replaceExisting = true;
-  form.requestSubmit();
-});
-
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
   clearError();
@@ -681,8 +678,7 @@ form.addEventListener("submit", async (event) => {
     closeDialog();
     await refresh();
   } catch (error) {
-    if (error.code === "duplicate") replaceRow.hidden = false;
-    else showError(errorMessage(error));
+    showError(errorMessage(error));
   } finally {
     submitButton.disabled = false;
     submitButton.textContent = "שמירת החתימה";
